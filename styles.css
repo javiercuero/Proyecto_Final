@@ -1,0 +1,105 @@
+* {
+     box-sizing: border-box;
+margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+     background-color: #fffefd;
+     color: #353535;
+     line-height: 1.6;
+     min-height: 100vh;
+     align-items: center;
+}
+
+/* Se estiliza el header*/
+
+header {
+     background-image: url("/images/eolica.jpg");
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: bottom;
+     height: 85vh;
+     text-align: center;
+     padding: 12rem 2rem;
+     overflow: hidden;
+     font-size: 1.3rem;
+}
+
+header .contenido {
+     background-color: rgba(0, 0, 0, 0.4);
+     display: inline-block;
+     padding: 1rem 2rem;
+     border-radius: 20px;
+     color: white;
+}
+
+/* se estiliza la Barra de navegación */
+
+nav {
+     position: relative;
+     width: fit-content; /* Para que se ajuste al contenido */
+     background: #fc6b0a;
+     border-radius: 8px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 0 auto;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra opcional moderna */
+}
+
+nav ul {
+     display: flex;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+}
+
+nav ul li a {
+     position: relative;
+     display: inline-block;
+     font-size: 1rem;
+     font-weight: 500;
+     color: white;
+     padding: 0.4rem 1.5rem;
+     z-index: 1;
+     text-decoration: none;
+}
+
+nav span {
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 100%;
+     background: linear-gradient(45deg, #f8872e, #ffa927);
+     border-radius: 10px;
+     z-index: 0;
+     transition: all 0.3s ease-in-out;
+     width: 0;
+}
+
+/*  */
+main {
+     display: grid; /* Establece el layout en grid */
+     grid-template-columns: 1fr 3fr; /* Aside ocupa 1 parte, section 3 partes */
+     gap: 1.5rem; /* Espacio entre aside y section */
+     padding: 1rem; /* Espacio interno en los bordes */
+     /*max-width: 1200px; /* Para limitar el ancho total del contenido */
+     /*margin: 0 fixed; /* Centra el main horizontalmente */
+     /*align-items: start; /* Alinea los hijos al inicio vertical */
+}
+
+@media (max-width: 768px) {
+     main {
+       grid-template-columns: 1fr; /* Cambia a una sola columna */
+     }
+}
+
+aside {
+     background-image: url('/images/paneles.jpg');
+     background-size: cover;
+     background-position: center;
+
+}
