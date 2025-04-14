@@ -1,11 +1,13 @@
+/* 1. Ajuste global: Hacemos que todos los elementos respeten el borde de la caja */
 * {
      box-sizing: border-box;
-margin: 0;
+     margin: 0;
      padding: 0;
      box-sizing: border-box;
      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+   /* 2. Estilo general del body */
 body {
      background-color: #f1f1f1;
      color: #353535;
@@ -14,8 +16,7 @@ body {
      align-items: center;
 }
 
-/* Se estiliza el header*/
-
+   /* Se estiliza el header */
 header {
      background-image: url("/images/eolica.jpg");
      background-size: cover;
@@ -36,20 +37,21 @@ header .contenido {
      color: white;
 }
 
-/* se estiliza la Barra de navegación */
-
+/* 3. Se estiliza la Barra de navegación */
 nav {
      position: relative;
-     width: fit-content; /* Para que se ajuste al contenido */
+     width: 100%; /* Cambiado de fit-content a 100% para móviles */
+     max-width: max-content; /* Limita el ancho máximo al contenido */
      background: #fc6b0a;
      border-radius: 8px;
      display: flex;
      justify-content: center;
      align-items: center;
      margin: 0 auto;
-     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra opcional moderna */
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+     padding: 0.5rem; /* Añadido padding para móviles */
+     box-sizing: border-box; /* Importante para el padding */
 }
-
 nav ul {
      display: flex;
      list-style: none;
@@ -80,42 +82,106 @@ nav span {
      width: 0;
 }
 
-/*  */
+/* inica la parte responsive del nav */
+
+.menu-toggle {
+     display: none;
+     background: none;
+     border: none;
+     color: white;
+     font-size: 1.5rem;
+     cursor: pointer;
+     padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+     nav {
+          width: 100%;
+     display: flex;
+padding: 0.5rem;
+     flex-wrap: wrap;
+justify-content: space-between;
+     }
+     
+     .menu-toggle {
+          display: block;
+          order: -1;
+     }
+
+     nav ul {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          flex-direction: column;
+          background: #fc6b0a;
+          border-radius: 0 0 8px 8px;
+          display: none;
+     }
+     
+     nav ul.active {
+          display: flex;
+     }
+     
+     nav ul li {
+          width: 100%;
+          text-align: center;
+     }
+
+     nav ul li a {
+          display: block;
+          padding: 1rem;
+     }
+
+      /* Ajustes para mantener el efecto en móviles */
+     nav span {
+          display: block;
+          height: 100%;
+          transition: all 0.3s ease;
+     }
+     
+     nav ul li:hover span {
+          width: 100%;
+     }
+}
+/* Finaliza la parte responsive del nav */
+
+/* 4. Estilo principal del contenido (layout grid) */
 main {
      display: grid; /* Establece el layout en grid */
      grid-template-columns: 1fr 3fr; /* Aside ocupa 1 parte, section 3 partes */
      gap: 1.5rem; /* Espacio entre aside y section */
      padding: 1rem; /* Espacio interno en los bordes */
-     /*max-width: 1200px; /* Para limitar el ancho total del contenido */
-     /*margin: 0 fixed; /* Centra el main horizontalmente */
-     /*align-items: start; /* Alinea los hijos al inicio vertical */
 }
 
-@media (max-width: 768px) {
-     main {
-       grid-template-columns: 1fr; /* Cambia a una sola columna */
-     }
+/* Responsive: Ajustes para pantallas pequeñas (móviles) */
+     @media (max-width: 768px) {
+          main {
+               grid-template-columns: 1fr; /* Cambia a una sola columna */
+               padding: 1rem; /* Espaciado ajustado para pantallas pequeñas */
+          }
 }
 
+/* 5. Estilo para el aside (barra lateral) */
 aside {
      background-image: url('/images/paneles.jpg');
      background-size: cover;
      background-position: center;
-     box-shadow: 0 0 12px rgba(0,0,0,0.1);
+     box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
      border-radius: 8px;
      overflow: hidden;
      position: relative;
      padding: 2rem;
      min-height: 300px;
-     
-     /* En esta seccion centro todo el contenido del aside */
+
+/* Centramos el contenido dentro del aside */
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
      color: #f8872e;
 
-     /* Efecto de transicion  */
+     /* Efecto de transición */
      transition: transform 0.3s ease, box-shadow 0.3s ease; /* transiciones suaves */
 }
 
@@ -124,7 +190,7 @@ aside:hover {
      box-shadow: 0 12px 24px hsl(26, 94%, 58%);
 }
 
-aside * {
+   aside * {
      position: relative;
      z-index: 2;
 }
@@ -160,7 +226,8 @@ aside li a:hover {
      transform: translateY(-5px);
      box-shadow: 0 12px 24px hsl(26, 94%, 58%);
 }
-
+   
+/* 6. Estilos para los div dentro de section */
 section div {
      border-left: 6px solid #fc580c;
      background-color: #f9f9f9;
@@ -169,45 +236,44 @@ section div {
      border-radius: 10px;
      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
      transition: transform 0.3s ease, box-shadow 0.3s ease;
-   }
-   
-   /* Efecto hover de "tarjeta" flotante */
-   section div:hover {
+}
+
+section div:hover {
      transform: translateY(-5px);
      box-shadow: 0 12px 24px hsl(26, 94%, 58%);
-   }
-   
+}
+
    /* Escalonado: alternar márgenes */
-   section div:nth-child(even) {
+section div:nth-child(even) {
      margin-left: 4rem;
-   }
-   
-   section div:nth-child(odd) {
+}
+
+section div:nth-child(odd) {
      margin-right: 4rem;
-   }
-   
-   section div:nth-child(even) {
+}
+
+section div:nth-child(even) {
      border-left: none;
      border-right: 6px solid #fc580c;
-   }
-   
+}
 
-   section > div h2 {
+section > div h2 {
      font-size: 1.6rem;
      color: #fc6b0a;
      margin-bottom: 1rem;
      border-bottom: 2px solid #ffa927;
      padding-bottom: 0.5rem;
      font-weight: 600;
-   }
-   
-   section > div p {
+}
+
+section > div p {
      font-size: 1rem;
      color: #444;
      line-height: 1.6;
      text-align: justify;
 }
 
+/* 7. Estilos para el footer */
 footer {
      background: linear-gradient(45deg, #fc6b0a, #f8872e);
      color: white;
@@ -225,5 +291,4 @@ footer p {
 footer p:hover {
      color: #222;
      text-decoration: underline;
-   }
-   
+}
