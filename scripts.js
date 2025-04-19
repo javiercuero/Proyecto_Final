@@ -13,10 +13,15 @@ links.forEach((link, i) => {
 });
 
 // Con este codigo se realiza ajuste responsive de la barra de navegacion (nav)
-document.querySelector('.menu-toggle').addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', function () {
+     const toggleBtn = document.querySelector('.menu-toggle');
      const menu = document.querySelector('nav ul');
-     menu.classList.toggle('active');
-     
-     // Cambiar el ícono (opcional)
-     this.textContent = menu.classList.contains('active') ? '✕' : '☰';
-});
+   
+     if (toggleBtn && menu) {
+       toggleBtn.addEventListener('click', function () {
+         menu.classList.toggle('active');
+         this.textContent = menu.classList.contains('active') ? '✕' : '☰';
+       });
+     }
+   });
+   

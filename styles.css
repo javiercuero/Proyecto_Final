@@ -3,7 +3,6 @@
      box-sizing: border-box;
      margin: 0;
      padding: 0;
-     box-sizing: border-box;
      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -17,8 +16,7 @@ body {
 }
 
    /* Se estiliza el header */
-header {
-     background-image: url("/images/eolica.jpg");
+header {     background-image: url("/images/eolica.jpg");
      background-size: cover;
      background-repeat: no-repeat;
      background-position: bottom;
@@ -41,22 +39,27 @@ header .contenido {
 nav {
      position: relative;
      width: 100%; /* Cambiado de fit-content a 100% para móviles */
-     max-width: max-content; /* Limita el ancho máximo al contenido */
      background: #fc6b0a;
      border-radius: 8px;
      display: flex;
-     justify-content: center;
+     justify-content: space-between;
      align-items: center;
      margin: 0 auto;
      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-     padding: 0.5rem; /* Añadido padding para móviles */
+     padding: 0.5rem 1rem;/* Añadido padding para móviles */
      box-sizing: border-box; /* Importante para el padding */
+     flex-wrap: wrap; /*Permite que el menu baje cuando se cambie a dispositicos moviles*/
 }
+
+
+
 nav ul {
      display: flex;
      list-style: none;
      margin: 0;
      padding: 0;
+     justify-content: center;
+     width: 100%;
 }
 
 nav ul li a {
@@ -92,31 +95,69 @@ nav span {
      font-size: 1.5rem;
      cursor: pointer;
      padding: 0.5rem 1rem;
+     /*display: block;
+     order: -1;
+     pendiente para validar la parte de la hamburguesa*/
 }
 
 @media (max-width: 768px) {
-     nav {
-          width: 100%;
-     display: flex;
-padding: 0.5rem;
-     flex-wrap: wrap;
-justify-content: space-between;
-     }
-     
-     .menu-toggle {
+     .menu-toggle{
           display: block;
           order: -1;
      }
 
      nav ul {
-          position: absolute;
-          top: 100%;
-          left: 0;
+          position: relative;
+          z-index: 100%;
+          /*     width:100%;
+          flex-direction: column;
+          background: #fc6b0a;
+          border-radius: 0 0 8 px 8px;
+          display: none;
+     */     
+     }
+
+     nav ul.active {
+          display: flex;
+     }
+
+     nav ul li a {
+          display: block;
+          padding: 1rem;
+     }
+
+     nav span {
+          display: none;
+     }
+}
+/* aqui finaliza la parte responsive del NAv*/
+@media (max-width: 768px) {
+     nav {
+          flex-direction: column;
+          align-items: flex-start;
+
+          /*
+          width: 100%;
+          display: flex;
+          padding: 0.5rem;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          */
+     }
+
+     nav ul {
+          position: static;
           width: 100%;
           flex-direction: column;
           background: #fc6b0a;
           border-radius: 0 0 8px 8px;
           display: none;
+          margin-top: 0.5rem;
+          
+          /*
+          top: 100%;
+          left: 0;
+          */
      }
      
      nav ul.active {
@@ -226,7 +267,7 @@ aside li a:hover {
      transform: translateY(-5px);
      box-shadow: 0 12px 24px hsl(26, 94%, 58%);
 }
-   
+
 /* 6. Estilos para los div dentro de section */
 section div {
      border-left: 6px solid #fc580c;
@@ -246,15 +287,12 @@ section div:hover {
    /* Escalonado: alternar márgenes */
 section div:nth-child(even) {
      margin-left: 4rem;
+     border-left: none;
+     border-right: 6px solid #fc580c;
 }
 
 section div:nth-child(odd) {
      margin-right: 4rem;
-}
-
-section div:nth-child(even) {
-     border-left: none;
-     border-right: 6px solid #fc580c;
 }
 
 section > div h2 {
@@ -291,4 +329,12 @@ footer p {
 footer p:hover {
      color: #222;
      text-decoration: underline;
+}
+
+/* 8. Se ajusta el Nav span */
+
+@media (max-width: 768px) {
+     nav span {
+          display: none;
+     }
 }
